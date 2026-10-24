@@ -113,6 +113,37 @@ def by_key(items, p, k, any_prefix=False):
                 return s
     return None
 
+def blocks(rows, side_col=None, always=False, split_on=()):
+    """free-form sheet tab -> paragraphs and tables. side_col: a column used for margin notes,
+    pulled out into a separate tips list when the row has nothing else in the middle columns"""
+    out, tips, table = [], [], None
+    def end():
+        nonlocal table
+        if table:
+            keep = [i for i in range(max(map(len, table))) if any(i < len(r) and r[i].strip() for r in table)]
+            t = [[(r[i].strip() if i < len(r) else "") for i in keep] for r in table]
+            head = any(re.match(r"^(Why\?|Usecase|Chems Made|Grinder|Examine Text.*|Initial Chemicals.*|What's a reductive mixture\?)$", c) for c in t[0])
+            out.append({"table": t, "head": head})
+        table = None
+    for r in rows:
+        r = [x for x in r]
+        if side_col is not None and len(r) > side_col and r[side_col].strip() and (always or not any(x.strip() for x in r[1:side_col])):
+            tips.append(r[side_col].strip()); r = r[:side_col]
+        cells = [x.strip() for x in r]
+        filled = [x for x in cells if x]
+        if not filled:
+            end(); continue
+        if len(filled) == 1 and cells[0]:
+            end()
+            t = cells[0]
+            out.append({"p": t, "mono": bool(re.search(r"[├┼┤┴]", t)), "h": t.isupper() and len(t) < 40 and bool(re.search("[A-Z]", t))})
+            continue
+        if table is not None and cells[0] in split_on: end()
+        if table is None: table = []
+        table.append(cells)
+    end()
+    return out, " ".join(tips)
+
 def map_labels(types, ident, label=None):
     """find the label for one chem in every label set. ident is any label for that chem; the
     chem is identified by its category symbol and abbreviation, and joke label sets (which
@@ -147,7 +178,13 @@ def main():
                 # identified by its category label; the gold guide's label column is reliable
                 ident = r.get("cat") or r.get("label")
                 if ident: r["labels"] = map_labels(types, ident, r.get("label"))
-    chem = {"types": [{"id": t["id"], "items": t["items"], "block": t["block"]} for t in types],
+    extra = {}
+    for name, title, side, always, split in (("Botany", "Botany", 7, False, ("Plant",)), ("MachineChems", "Machine chems", None, False, ()),
+                                             ("Plumbing", "Plumbing", 3, True, ()), ("Notes", "Notes", None, False, ())):
+        if name in sh:
+            b, tips = blocks(sh[name], side, always, split)
+            extra[name.lower()] = {"title": title, "blocks": b, "tips": tips}
+    chem = {"extra": extra, "types": [{"id": t["id"], "items": t["items"], "block": t["block"]} for t in types],
             "howto": howto, "silver": {"intro": s_intro.get("texts", []), "sections": s_secs},
             "gold": {"intro": g_intro.get("texts", []), "sections": g_secs}}
     js = "const CHEM=" + json.dumps(chem, ensure_ascii=False, separators=(",", ":")) + ";"

@@ -15,7 +15,7 @@ git clone --depth 1 --filter=blob:none --sparse https://github.com/ss14Starlight
 git -C space-station-14 sparse-checkout set Resources/Prototypes Resources/Locale/en-US
 pip install pyyaml
 python3 tools/check_game_data.py space-station-14            # report only
-python3 tools/check_game_data.py space-station-14 --apply    # update index.html and the "as of" date
+python3 tools/check_game_data.py space-station-14 --apply    # update index.html, the "as of" date and the reaction calculator
 ```
 
 It covers cooking recipes and reactions. Slicing, assembled foods, vendor stock and item icons are not regenerated; new items show without an icon until the sprite sheet is rebuilt.

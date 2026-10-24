@@ -4,7 +4,8 @@
 
 Reports cooking recipes and chemical reactions that were added, removed or changed in the
 game since the site's data was built. With --apply, it rewrites those entries in index.html
-and stamps today's date as the data date. Slicing, assembly, vendors and icons are not
+and stamps today's date as the data date, and rebuilds the Chemistry tab's reaction
+calculator from the same files. Slicing, assembly, vendors and icons are not
 covered; the report lists anything that needs a manual look.
 """
 import sys, os, re, json, datetime, subprocess
@@ -109,6 +110,10 @@ def main():
         html = re.sub(r'const DATA_DATE="[^"]*"', f'const DATA_DATE="{datetime.date.today().isoformat()}"', html)
         open(PAGE, "w", encoding="utf-8").write(html)
         print("Updated index.html")
+    if apply:
+        import build_reactions
+        sys.argv = [sys.argv[0], root]
+        build_reactions.main()
 
 if __name__ == "__main__":
     main()
