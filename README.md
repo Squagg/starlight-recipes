@@ -19,3 +19,7 @@ python3 tools/check_game_data.py space-station-14 --apply    # update index.html
 ```
 
 It covers cooking recipes and reactions. Slicing, assembled foods, vendor stock and item icons are not regenerated; new items show without an icon until the sprite sheet is rebuilt.
+
+## Chemistry tab
+
+The Chemistry tab comes from the community sheet [SS14 Chemistry for Kobolds](https://docs.google.com/spreadsheets/d/1ExvhhgdQMwxDBjOEoU6wGEOixlurMb_ECHWumff4kIU) by Licks-the-Vials and other Starlight chemists, used with permission. To update it, export the sheet to `data/chemistry-for-kobolds.txt` (each tab as `## Sheet name: X` followed by its rows as CSV) and run `python3 tools/build_chem.py`.
