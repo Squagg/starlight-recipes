@@ -33,7 +33,7 @@ label.ck{display:flex;gap:5px;align-items:center;font-size:14px;cursor:pointer}
 .full{grid-column:1/-1}
 .sec{grid-column:1/-1;margin:12px 0 0;font-size:13px;color:var(--mut);text-transform:uppercase;letter-spacing:.08em}
 .fc{background:var(--card);border:1px solid var(--line);border-radius:8px;overflow:hidden;min-width:0}
-.fc header{display:flex;align-items:center;gap:2px;padding:4px 6px 4px 10px;background:var(--head);min-height:34px}
+.fc header.hl{padding-left:6px}.fc header{display:flex;align-items:center;gap:2px;padding:4px 6px 4px 10px;background:var(--head);min-height:34px}
 .fc h4{flex:1;margin:0;font-size:15px;text-align:center;min-width:0;overflow-wrap:anywhere;text-wrap:balance}
 .fc header button{padding:4px;line-height:0;background:transparent;border-color:transparent;color:var(--fg)}
 .fc header button:hover{border-color:var(--line)}
@@ -149,11 +149,12 @@ else if(t=="cut"){const n=(o.outputs.find(y=>y[0]==title)||o.outputs[0])[1],also
 body=`<ol><li>Take ${ing(["e:"+o.inputId,o.input])}</li><li>${o.method=="Heat"?"Heat it to "+fmtT(o.temp):o.method=="Roll"?"Roll it with a rolling pin":"Cut it with a kitchen knife"}</li></ol>${also.length?`<p class="m">Also makes ${also.map(y=>y[1]+" "+E(y[0])).join(", ")}</p>`:""}`;side=n>1?`<span>makes ${n}</span>`:""}
 else if(t=="seq"){body=`<ol><li>Take ${ing(["e:"+o.startId,o.start])}</li>${o.steps.map(s=>`<li>${s.k=="last"?"Finish with "+anyOf(s.any):s.k=="reagent"?`Add ${rng(s)}u ${ing(["r:"+s.id,s.name])}`:`Add ${rng(s)} ${s.any.length>1?"of any of: ":""}${anyOf(s.any)}`}</li>`).join("")}</ol>`;side="<span>Assemble</span>"}
 else body=`<p>${t=="leaf"?"Get it: ":"Not stocked: "}${E(o)}</p>`;
-const btn=c.ctx=="grid"?`<button class="star" type="button" data-fav="${E(c.id)}" aria-pressed="${favs.has(c.id)}" aria-label="Favourite ${E(title)}" title="Favourite">${STAR}</button><button class="st" type="button" data-id="${E(c.id)}" aria-label="Show how to make ${E(title)}" title="Show steps">${TREE}</button><button class="lk" type="button" data-link="${E(c.id)}" aria-label="Copy link to ${E(title)}" title="Copy link">${LINK}</button>`
+const btn=c.ctx=="grid"?`<button class="star" type="button" data-fav="${E(c.id)}" aria-pressed="${favs.has(c.id)}" aria-label="Favourite ${E(title)}" title="Favourite">${STAR}</button><button class="st" type="button" data-id="${E(c.id)}" aria-label="Show how to make ${E(title)}" title="Show steps">${TREE}</button>`
 :c.ctx=="flow"&&c.kids?`<button class="fx" type="button" aria-expanded="${!!c.root}" aria-label="Show how to make the ingredients of ${E(title)}" title="Show ingredients">${TREE}</button>`
 :c.ctx=="pop"&&t!="leaf"&&t!="none"?`<button class="st" type="button" data-pw="${POPW.push([way,title])-1}" aria-label="Show how to make ${E(title)}" title="Show steps">${TREE}</button>`:"";
 const key=c.key||(t=="recipe"||t=="seq"?"e:"+o.result:t=="rx"?"r:"+(o.products.find(y=>y[0]==title)||o.products[0])[2]:t=="cut"?"e:"+(o.outIds[o.outputs.findIndex(y=>y[0]==title)]||o.outIds[0]):"");
-return`<div class="fc${c.root?" root":""}"${c.ctx=="grid"?` data-card="${E(c.id)}"`:""}><header><h4>${key?ico(key):""}${E(title)}${c.need?` <span class="badge">${E(c.need)}</span>`:""}</h4>${btn}</header><div class="fb"><div class="bd">${body}</div>${side?`<div class="side">${side}</div>`:""}</div></div>`}
+const lnk=c.ctx=="grid"?`<button class="lk" type="button" data-link="${E(c.id)}" aria-label="Copy link to ${E(title)}" title="Copy link">${LINK}</button>`:"";
+return`<div class="fc${c.root?" root":""}"${c.ctx=="grid"?` data-card="${E(c.id)}"`:""}><header${lnk?' class="hl"':""}>${lnk}<h4>${key?ico(key):""}${E(title)}${c.need?` <span class="badge">${E(c.need)}</span>`:""}</h4>${btn}</header><div class="fb"><div class="bd">${body}</div>${side?`<div class="side">${side}</div>`:""}</div></div>`}
 
 const ITEMS=[...R.map(r=>({id:"R:"+r.id,way:["recipe",r],name:r.name,method:r.device=="Mixing"?"Mix":"Cook",device:r.device,group:r.group})),
 ...P.map((p,i)=>({id:"P:"+i,way:["cut",p],name:p.outputs[0][0],method:p.method})),...SQ.map(s=>({id:"S:"+s.id,way:["seq",s],name:s.name,method:"Assemble"}))];
