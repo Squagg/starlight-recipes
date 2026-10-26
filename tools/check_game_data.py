@@ -5,7 +5,7 @@
 Reports cooking recipes and chemical reactions that were added, removed or changed in the
 game since the site's data was built. With --apply, it rewrites those entries in index.html
 and stamps today's date as the data date, and rebuilds the Chemistry tab's reaction
-calculator from the same files. Slicing, assembly, vendors and icons are not
+calculator and plant list from the same files. Slicing, assembly, vendors and icons are not
 covered; the report lists anything that needs a manual look.
 """
 import sys, os, re, json, datetime, subprocess
@@ -114,6 +114,8 @@ def main():
         import build_reactions
         sys.argv = [sys.argv[0], root]
         build_reactions.main()
+        import build_botany
+        build_botany.main()
 
 if __name__ == "__main__":
     main()

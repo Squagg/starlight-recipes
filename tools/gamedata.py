@@ -66,9 +66,24 @@ def load(root):
     def reagent_name(rid):
         r = reags.get(rid, {})
         k = r.get("name")
-        return loc.get(k, k) if k else rid
+        n = loc.get(k, k) if k else rid
+        return re.sub(r"^reagent-name-", "", n).replace("-", " ") if n.startswith("reagent-name-") else n
     def ent_desc(eid):
         d = loc.get(f"ent-{eid}.desc") or ent_field(eid, "description") or ""
         return loc.get(d, d) if re.match(r"^[\w-]+$", str(d)) and "-" in str(d) else d
-    return {"protos": protos, "ent_name": ent_name, "ent_desc": ent_desc, "reagent_name": reagent_name,
+    def ent_comps(eid, seen=None):
+        """components with parent inheritance applied: parents first, child fields win"""
+        seen = seen or set()
+        e = ents.get(eid)
+        if not e or eid in seen: return {}
+        out = {}
+        ps = e.get("parent")
+        for p in ([ps] if isinstance(ps, str) else ps or []):
+            for t, c in ent_comps(p, seen | {eid}).items():
+                out.setdefault(t, {}).update(c)
+        for c in e.get("components") or []:
+            if isinstance(c, dict) and "type" in c:
+                out.setdefault(c["type"], {}).update(c)
+        return out
+    return {"protos": protos, "loc": loc, "ent_comps": ent_comps, "ent_name": ent_name, "ent_desc": ent_desc, "reagent_name": reagent_name,
             "recipes": protos.get("microwaveMealRecipe", {}), "reactions": protos.get("reaction", {})}
