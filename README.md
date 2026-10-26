@@ -18,7 +18,7 @@ python3 tools/check_game_data.py space-station-14            # report only
 python3 tools/check_game_data.py space-station-14 --apply    # update index.html, the "as of" date, the reaction calculator and the plant list
 ```
 
-It covers cooking recipes and reactions. Slicing, assembled foods, vendor stock and item icons are not regenerated; new items show without an icon until the sprite sheet is rebuilt.
+It covers cooking and deep fryer recipes and reactions. New items have no icon until you run `python3 tools/add_icons.py space-station-14`, which needs their textures checked out (it lists the folders to add to the sparse checkout). Slicing, assembled foods, vendor stock and item icons are not regenerated; new items show without an icon until the sprite sheet is rebuilt.
 
 ## Chemistry tab
 

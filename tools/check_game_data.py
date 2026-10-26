@@ -67,6 +67,11 @@ def key_x(x): return (sorted((a[2], a[1]) for a in x["reagents"]), sorted((a[2],
 def main():
     root = sys.argv[1]; apply = "--apply" in sys.argv
     g = load(root)
+    # deep fryer recipes turn one item into one fried item; treat them as one-ingredient cooking recipes
+    for fid, f in (g["protos"].get("deepFryingRecipe") or {}).items():
+        if f.get("ingredient") and f.get("result"):
+            g["recipes"][fid] = {"id": fid, "result": f["result"], "time": f.get("time", 5), "group": "Deep fried",
+                                 "deviceType": "DeepFryer", "solids": {f["ingredient"]: 1}, "__file__": f.get("__file__", "")}
     # hidden easter-egg recipes stay off the site
     g["recipes"] = {k: v for k, v in g["recipes"].items() if not v.get("secretRecipe") and v.get("group") != "Secret"}
     html = open(PAGE, encoding="utf-8").read()
