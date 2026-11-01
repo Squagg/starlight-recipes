@@ -1,0 +1,9 @@
+# data.js and sprite.png are requested with ?v=<hash> (see tools/sitefiles.py), so browsers can keep them for a year
+/data.js
+  Cache-Control: public, max-age=31536000, immutable
+/sprite.png
+  Cache-Control: public, max-age=31536000, immutable
+/preview.png
+  Cache-Control: public, max-age=86400
+/favicon.png
+  Cache-Control: public, max-age=86400

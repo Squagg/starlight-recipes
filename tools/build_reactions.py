@@ -11,7 +11,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 from gamedata import load
 
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-PAGE = os.path.join(HERE, "index.html")
+from sitefiles import DATA as PAGE, stamp
 
 def dispenser(g):
     """reagents the chem dispenser makes or ships with, from its prototype"""
@@ -58,8 +58,8 @@ def main():
         if mix: r["mix"] = mix
         rx.append(r)
     used = {a[0] for r in rx for a in r["in"]} | {a[0] for r in rx for a in r["out"]}
-    names = {k: g["reagent_name"](k) for k in used}
-    colors = {k: reags[k]["color"] for k in used if k in reags and isinstance(reags[k].get("color"), str)}
+    names = {k: g["reagent_name"](k) for k in sorted(used)}
+    colors = {k: reags[k]["color"] for k in sorted(used) if k in reags and isinstance(reags[k].get("color"), str)}
     src = dispenser(g)
     src.update({"Water": "any sink or water tank", "WeldingFuel": "welding fuel tank", "Plasma": "plasma vial (ChemVend, chemistry locker) or ground plasma sheets", "Blood": "draw it with a syringe"})
     data = {"rx": rx, "names": names, "colors": colors, "src": {k: v for k, v in src.items() if k in used}}
@@ -69,7 +69,7 @@ def main():
         html = re.sub(r"^const CRX=.*$", lambda m: js, html, count=1, flags=re.M)
     else:
         html = html.replace("\nconst CHEM=", "\n" + js + "\nconst CHEM=", 1)
-    open(PAGE, "w", encoding="utf-8").write(html)
+    open(PAGE, "w", encoding="utf-8").write(html); stamp()
     print(f"{len(rx)} reactions, {len(names)} reagents, {len(data['src'])} with known sources")
     print("sources:", data["src"])
 

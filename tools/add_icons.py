@@ -13,7 +13,7 @@ from gamedata import load
 from check_game_data import site_data
 
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-PAGE, SHEET = os.path.join(HERE, "index.html"), os.path.join(HERE, "sprite.png")
+from sitefiles import DATA as PAGE, SHEET, stamp
 
 def sprite_of(g, eid):
     c = g["ent_comps"](eid).get("Sprite", {})
@@ -63,7 +63,7 @@ def main():
         used.add(cell); IC["e:" + e] = list(cell); added += 1
     sheet.save(SHEET, optimize=True)
     html = html[:m.start(1)] + json.dumps(IC, separators=(", ", ": ")) + html[m.end(1):]
-    open(PAGE, "w", encoding="utf-8").write(html)
+    open(PAGE, "w", encoding="utf-8").write(html); stamp()
     print(f"added {added} icons; sheet is now {sheet.width}x{sheet.height}")
     if missing: print("check out these textures and rerun:", sorted(set(missing)))
 

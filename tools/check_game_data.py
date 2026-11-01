@@ -13,7 +13,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 from gamedata import load
 
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-PAGE = os.path.join(HERE, "index.html")
+from sitefiles import DATA as PAGE, stamp
 
 def site_data(html):
     """pull the R and RX arrays out of the page's data line"""
@@ -113,7 +113,7 @@ def main():
         for i, j, k in spans:
             html = html[:i] + json.dumps(new_lists[k], ensure_ascii=False, separators=(",", ":")) + html[j:]
         html = re.sub(r'const DATA_DATE="[^"]*"', f'const DATA_DATE="{datetime.date.today().isoformat()}"', html)
-        open(PAGE, "w", encoding="utf-8").write(html)
+        open(PAGE, "w", encoding="utf-8").write(html); stamp()
         print("Updated index.html")
     if apply:
         import build_reactions

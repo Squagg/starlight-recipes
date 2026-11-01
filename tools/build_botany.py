@@ -13,7 +13,7 @@ sys.path.insert(0, os.path.dirname(__file__))
 from gamedata import load
 
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
-PAGE = os.path.join(HERE, "index.html")
+from sitefiles import DATA as PAGE, stamp
 # component defaults (Content.Shared/Botany/Components)
 DEF = {"potency": 1, "growthStages": 6, "waterConsumption": 0.5, "nutrientConsumption": 0.75,
        "lowHeatTolerance": 283, "highHeatTolerance": 303, "harvestRepeat": "NoRepeat"}
@@ -80,7 +80,7 @@ def main():
         html = re.sub(r"^const BOT=.*$", lambda m: js, html, count=1, flags=re.M)
     else:
         html = html.replace("\nconst CHEM=", "\n" + js + "\nconst CHEM=", 1)
-    open(PAGE, "w", encoding="utf-8").write(html)
+    open(PAGE, "w", encoding="utf-8").write(html); stamp()
     print(f"{len(plants)} plants")
     return plants
 

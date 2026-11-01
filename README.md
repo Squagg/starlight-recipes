@@ -6,6 +6,10 @@ Live at https://starlight-recipes.pages.dev
 
 Built by Squagg with help from Claude (Anthropic's AI assistant), which wrote much of the code and recipe data processing.
 
+## Files
+
+Pushes to `main` deploy automatically through Cloudflare Pages, with no build step. `index.html` is the app, `data.js` holds the recipe and chemistry data, and `sprite.png` the item icons. `_headers` lets browsers cache `data.js` and `sprite.png` for a year, and `index.html` loads them with a `?v=` hash that the tools in `tools/` refresh whenever they change those files. After editing either file by hand, run `python3 -c "import sys; sys.path.insert(0, 'tools'); import sitefiles; sitefiles.stamp()"`.
+
 ## Updating the recipe data
 
 `tools/check_game_data.py` compares the site against Starlight's game files and lists cooking recipes and drink reactions that were added, removed or changed:

@@ -7,11 +7,12 @@ https://docs.google.com/spreadsheets/d/1ExvhhgdQMwxDBjOEoU6wGEOixlurMb_ECHWumff4
 with each tab as "## Sheet name: X" followed by its rows as CSV. Re-export the sheet to
 that file and rerun this script to pick up changes.
 """
-import csv, io, json, re, os
+import csv, io, json, re, os, sys
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 
 HERE = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SRC = os.path.join(HERE, "data", "chemistry-for-kobolds.txt")
-PAGE = os.path.join(HERE, "index.html")
+from sitefiles import DATA as PAGE, stamp
 
 def sheets(text):
     out, name, buf = {}, None, []
@@ -193,7 +194,7 @@ def main():
         html = re.sub(r"^const CHEM=.*$", lambda m: js, html, count=1, flags=re.M)
     else:
         html = html.replace("\nconst $=i=>", "\n" + js + "\nconst $=i=>", 1)
-    open(PAGE, "w", encoding="utf-8").write(html)
+    open(PAGE, "w", encoding="utf-8").write(html); stamp()
     print(f"label sets: {', '.join(t['id'] + ' ' + str(sum('t' in x for x in t['items'])) for t in types)}")
     for n, secs in (("silver", s_secs), ("gold", g_secs)):
         print(n, [(s["title"], len(s["rows"])) for s in secs])
