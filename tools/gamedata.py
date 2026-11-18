@@ -82,7 +82,7 @@ def load(root):
             for t, c in ent_comps(p, seen | {eid}).items():
                 out.setdefault(t, {}).update(c)
         for c in e.get("components") or []:
-            if isinstance(c, dict) and "type" in c:
+            if isinstance(c, dict) and isinstance(c.get("type"), str):
                 out.setdefault(c["type"], {}).update(c)
         return out
     return {"protos": protos, "loc": loc, "ent_comps": ent_comps, "ent_name": ent_name, "ent_desc": ent_desc, "reagent_name": reagent_name,
