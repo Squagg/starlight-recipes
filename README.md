@@ -8,7 +8,7 @@ Built by Squagg with help from Claude (Anthropic's AI assistant), which wrote mu
 
 ## Files
 
-Pushes to `main` deploy automatically through Cloudflare Pages, with no build step. `index.html` is the app, `data.js` holds the recipe and chemistry data, and `sprite.png` the item icons. `_headers` lets browsers cache `data.js` and `sprite.png` for a year, and `index.html` loads them with a `?v=` hash that the tools in `tools/` refresh whenever they change those files. After editing either file by hand, run `python3 -c "import sys; sys.path.insert(0, 'tools'); import sitefiles; sitefiles.stamp()"`.
+Pushes to `main` deploy automatically through Cloudflare Pages, with no build step. `index.html` is the app, `data.js` holds the recipe and chemistry data, and `sprite.png` the item icons. `_headers` lets browsers cache `data.js` and `sprite.png` for a year, and `index.html` loads them with a `?v=` hash that the tools in `tools/` refresh whenever they change those files. The same step rebuilds `sitemap.xml` and `robots.txt`, listing every tab, recipe and drink address for search engines. After editing either file by hand, run `python3 tools/sitefiles.py`.
 
 ## Updating the recipe data
 

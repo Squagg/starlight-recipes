@@ -1,0 +1,4 @@
+User-agent: *
+Disallow: /tools/
+Disallow: /data/
+Sitemap: https://starlight-recipes.pages.dev/sitemap.xml

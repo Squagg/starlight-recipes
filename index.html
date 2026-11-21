@@ -1,4 +1,4 @@
-<!doctype html><html><head><meta charset=utf8><script>/* the live site uses real paths like /drinks/white-russian, so resolve files from the site root */if(/\.pages\.dev$/.test(location.hostname))document.write('<base href="/">')</script><title>Starlight Recipes</title><meta name="description" content="Every food recipe and drink for the Starlight Space Station 14 server, with from-scratch pour orders for the bar."><meta property="og:type" content="website"><meta property="og:site_name" content="Starlight SS14"><meta property="og:title" content="Starlight Recipes"><meta property="og:description" content="Every food recipe and drink for the Starlight Space Station 14 server, with from-scratch pour orders for the bar."><meta property="og:url" content="https://starlight-recipes.pages.dev/"><meta property="og:image" content="https://starlight-recipes.pages.dev/preview.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#6ea0ff"><link rel="icon" type="image/png" href="favicon.png"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<!doctype html><html><head><meta charset=utf8><script>/* the live site uses real paths like /drinks/white-russian, so resolve files from the site root */if(/\.pages\.dev$/.test(location.hostname))document.write('<base href="/">')</script><title>Starlight Recipes: SS14 cooking, drinks and chemistry guide</title><meta name="description" content="Every cooking recipe, drink and chemistry recipe for the Starlight Space Station 14 (SS14) server: from-scratch pour orders, a reaction calculator, botany and hand labeler labels."><link rel="canonical" href="https://starlight-recipes.pages.dev/"><meta property="og:type" content="website"><meta property="og:site_name" content="Starlight SS14"><meta property="og:title" content="Starlight Recipes: SS14 cooking, drinks and chemistry guide"><meta property="og:description" content="Every cooking recipe, drink and chemistry recipe for the Starlight Space Station 14 (SS14) server: from-scratch pour orders, a reaction calculator, botany and hand labeler labels."><meta property="og:url" content="https://starlight-recipes.pages.dev/"><meta property="og:image" content="https://starlight-recipes.pages.dev/preview.png"><meta property="og:image:width" content="1200"><meta property="og:image:height" content="630"><meta name="twitter:card" content="summary_large_image"><meta name="theme-color" content="#6ea0ff"><link rel="icon" type="image/png" href="favicon.png"><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
 <meta name="claude:viewport-fit-sides" content="cover"><style>
 /* layout: header + sticky search bar over a responsive card grid; Steps opens a full-screen right-to-left build tree */
 :root{--bg:#fff;--fg:#1c1e24;--card:#f1f3f7;--mut:#5f6675;--acc:#1d4ed8;--accfg:#fff;--line:#c4c9d4;--head:#e2e6ee;--hl:#d6e2ff;--star:#a86a00}
@@ -66,7 +66,7 @@ ul.chk{list-style:none;padding:0}ul.chk label{display:flex;gap:6px;padding:3px 0
 .fc.hit{border-color:var(--acc);box-shadow:0 0 0 3px var(--hl)}
 a{color:var(--acc)}#foot{margin:28px 0 8px;text-align:center}#frep{font-size:13px;white-space:nowrap}
 .cbar{display:flex;flex-wrap:wrap;gap:8px;align-items:center;margin:10px 0 6px}.seg{display:flex;flex-wrap:wrap;gap:6px;flex:1 1 560px}.seg button{white-space:nowrap}
-@media(max-width:640px){.top h1{flex:1 1 auto}#tabs{order:3;flex-basis:100%}#tabs button{padding:6px 10px}}
+@media(max-width:640px){.top .ttl{flex:1 1 0}#tabs{order:3;flex-basis:100%}#tabs button{padding:6px 10px}}
 .cred{margin:0 0 10px}.cnote{background:var(--card);border:1px solid var(--line);border-radius:8px;padding:8px 12px;margin:0 0 8px}
 .cnote summary{display:list-item;cursor:pointer;color:var(--acc);font-weight:600}.cnote details{display:block}.pre{white-space:pre-line;margin:8px 0 0;font-size:14px}
 .csec{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:4px 12px;align-items:baseline;margin:14px 0 0}.csec h2{margin:0;font-size:16px}
@@ -101,9 +101,10 @@ table.ct{border-collapse:collapse;width:100%;font-size:14px;margin:4px 0}.ct td,
 .fc.flash{border-color:var(--acc);box-shadow:0 0 0 3px var(--hl)}details.cnote>summary{font-weight:600}
 /* inactive tabs keep their rendered layout (content-visibility) so switching back costs almost nothing */
 .off{content-visibility:hidden;contain-intrinsic-size:0 0;height:0;overflow:hidden;margin:0!important;padding:0!important;gap:0!important}
+.ttl{min-width:0}.ttl h1{line-height:1.15}.sub{margin:2px 0 0;font-size:13px}
 #toast{position:fixed;left:50%;bottom:calc(20px + env(safe-area-inset-bottom,0px));transform:translateX(-50%);z-index:40;background:var(--fg);color:var(--bg);padding:8px 14px;border-radius:8px;font-size:14px}
 </style>
-<div class="top"><h1>Starlight Recipes</h1>
+<div class="top"><div class="ttl"><h1>Starlight Recipes</h1><p class="m sub">Space Station 14 cooking, bar, chemistry and botany guide for the Starlight server</p></div>
 <nav id="tabs" aria-label="Sections"><button type="button" data-tab="recipes" aria-pressed="true">Recipes</button><button type="button" data-tab="drinks" aria-pressed="false">Drinks</button><button type="button" data-tab="chem" aria-pressed="false">Chemistry</button><button type="button" data-tab="combos" aria-pressed="false">Combinations</button><button type="button" data-tab="menus" aria-pressed="false">Menus</button><button type="button" data-tab="list" aria-pressed="false">Prep list</button></nav>
 <button id="pf" class="tog" type="button" aria-expanded="false" aria-controls="prefs" aria-label="Preferences" title="Preferences"><svg width="18" height="18" viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="12" r="3.2" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="M12 2.5v3M12 18.5v3M2.5 12h3M18.5 12h3M5.3 5.3l2.1 2.1M16.6 16.6l2.1 2.1M5.3 18.7l2.1-2.1M16.6 7.4l2.1-2.1" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg></button>
 <div id="prefs" hidden><fieldset><legend>Theme</legend><label class="ck"><input type="radio" name="th" id="th0" value=""> Match my system</label><label class="ck"><input type="radio" name="th" id="th1" value="light"> Light</label><label class="ck"><input type="radio" name="th" id="th2" value="dark"> Dark</label></fieldset>
@@ -128,6 +129,18 @@ table.ct{border-collapse:collapse;width:100%;font-size:14px;margin:4px 0}.ct td,
 // Cloudflare's analytics; elsewhere (file previews, the artifact copy) they stay as #drinks/white-russian
 const PATHMODE=/\.pages\.dev$/.test(location.hostname);
 const curLoc=()=>decodeURIComponent(PATHMODE&&location.pathname.length>1?location.pathname.slice(1):location.hash.slice(1));
+// each tab, chemistry view, recipe and drink gets its own title and description, for search results and browser tabs
+const SITE="Starlight Recipes",TAB_T={recipes:["SS14 cooking recipes","Every cooking, mixing, slicing and assembly recipe on the Starlight Space Station 14 server, with ingredients, devices and cook times."],drinks:["SS14 drinks and cocktails","Every drink on the Starlight Space Station 14 server with from-scratch pour orders in 5u steps for the bar."],
+chem:["SS14 chemistry guide","The Chemistry for Kobolds guide for Starlight Space Station 14: medicine recipes, methods and labels."],"chem/gold":["SS14 gold beaker chemistry guide","Gold beaker chemistry guide for Starlight Space Station 14: every medicine with temperatures and totals."],
+"chem/calc":["SS14 chemistry reaction calculator","Pick any chemical in Space Station 14 (Starlight) and get step-by-step amounts down to dispenser chemicals, with temperatures and catalysts."],"chem/labels":["SS14 hand labeler labels","Copy-ready hand labeler labels for every SS14 chemical: category, colored, meme and OwO sets, plus a one-line config import."],
+"chem/botany":["SS14 botany plants and chemicals","Every plant on the Starlight Space Station 14 server: chemicals per harvest, yield, potency, mutations and where to get seeds."],"chem/machinechems":["SS14 machine chems","What grinding and juicing items gives you in Space Station 14 (Starlight)."],"chem/plumbing":["SS14 chemistry plumbing","Chemistry plumbing setups for Starlight Space Station 14."],"chem/notes":["SS14 chemistry notes","Chemistry notes and answers for Starlight Space Station 14."],
+combos:["SS14 combination foods","Space Station 14 foods you build from parts, like burgers and kebabs, on the Starlight server."],menus:["SS14 chef menus","Ready-made chef menus for Space Station 14 (Starlight) with a combined shopping list."],list:["SS14 kitchen prep list","Shift-start prep checklist for Space Station 14 chefs on the Starlight server."]};
+function setMeta(key,i){let t,d;const cut=x=>x.length>158?x.slice(0,155).replace(/[ ,;]+[^ ,;]*$/,"")+"…":x;
+if(i&&i.tab=="drinks"){const S=curSetup(i.way[1].id);t=`${TC(i.name)} (SS14 drink)`;d=`How to mix ${i.name} in Space Station 14 (Starlight), ${S.T}u from scratch: ${S.steps.filter(y=>!y.make).map(y=>y.u+"u "+y.name).join(", ")}.`}
+else if(i){t=`${TC(i.name)} (SS14 recipe)`;d=`How to make ${i.name} in Space Station 14 (Starlight): ${i.ins.map(x=>fu(x[2])+(x[3]||"×")+" "+x[1]).join(", ")}${i.way[0]=="recipe"&&i.way[1].device!="Mixing"?", "+(DEV[i.way[1].device]||i.way[1].device).toLowerCase():""}.`}
+else[t,d]=TAB_T[key]||TAB_T.recipes;
+document.title=i||key&&key!="recipes"?t+" · "+SITE:"Starlight Recipes: SS14 cooking, drinks and chemistry guide";
+document.querySelector('meta[name=description]').content=cut(d);const c=document.querySelector("link[rel=canonical]");if(c)c.href="https://starlight-recipes.pages.dev/"+(i?i.tab+"/"+i.slug:key&&key!="recipes"?key:"")}
 function setLoc(p,push){const u=PATHMODE?"/"+p:"#"+p;if(PATHMODE?location.pathname==u&&!location.hash:location.hash==u)return;try{history[push?"pushState":"replaceState"](null,"",u)}catch(e){}}
 // drinks: every drink is shown from scratch, with intermediate drinks expanded down to dispenser stock.
 // batch size: 30u if every pour lands on 5u steps, else the smallest such batch up to 90u (smaller than 30u as a last resort);
@@ -379,12 +392,12 @@ h+=`<section class="fc"><header><h4>Everything you need</h4></header><div class=
 function calcWire(){const go=()=>{const v=$("cq").value.trim().toLowerCase();if(BYNAME[v]&&BYNAME[v]!=calcSel){calcSel=BYNAME[v];calcAmt="";chem();$("cq").focus()}};$("cq").onchange=go;$("cq").oninput=()=>{if(BYNAME[$("cq").value.trim().toLowerCase()])go()};
 $("camt").onchange=()=>{const v=Math.round(+$("camt").value);calcAmt=v>0?String(Math.min(v,1000)):"";chem()}}
 $("chem").addEventListener("click",e=>{const q=e.target.closest("[data-cq]");if(q){calcSel=q.dataset.cq;calcAmt="";chem();return}const b=e.target.closest("[data-cv],[data-copy]");if(!b)return;
-if(b.dataset.cv){chemView=b.dataset.cv;try{setLoc("chem/"+chemView,true)}catch(x){}chem();return}
+if(b.dataset.cv){chemView=b.dataset.cv;try{setLoc("chem/"+chemView,true);setMeta(chemView=="guide"?"chem":"chem/"+chemView)}catch(x){}chem();return}
 copyText(LBL_STORE[b.dataset.copy],"Copied")});
 
 // tabs
 const RENDER={recipes:draw,drinks,chem,combos,menus,list},VIEW={recipes:"grid",drinks:"drinks",chem:"chem",combos:"combos",menus:"menus",list:"list"};
-function show(t,keepHash){tab=t;if(!keepHash)setLoc(t+(t=="chem"&&chemView!="guide"?"/"+chemView:""),true);document.querySelectorAll("#tabs button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.tab==t));for(const k in VIEW)$(VIEW[k]).classList.toggle("off",k!=t);
+function show(t,keepHash){tab=t;if(!keepHash)setMeta(t+(t=="chem"&&chemView!="guide"?"/"+chemView:""));if(!keepHash)setLoc(t+(t=="chem"&&chemView!="guide"?"/"+chemView:""),true);document.querySelectorAll("#tabs button").forEach(b=>b.setAttribute("aria-pressed",b.dataset.tab==t));for(const k in VIEW)$(VIEW[k]).classList.toggle("off",k!=t);
 const searchable=t=="recipes"||t=="drinks";$("bar").hidden=$("n").hidden=!searchable;$("rctl").hidden=t!="recipes";$("batch").hidden=t!="drinks";$("fpanel").hidden=t!="recipes"||$("fb").getAttribute("aria-expanded")!="true";
 if(rAt[t]!==ver||syncFill){RENDER[t]();rAt[t]=ver;nTxt[t]=$("n").textContent}else $("n").textContent=nTxt[t]||""}
 // ver goes up whenever something several tabs depend on changes (search, favourites, preferences)
@@ -445,16 +458,16 @@ const REPO="https://github.com/Squagg/starlight-recipes";
 const issueUrl=name=>REPO+"/issues/new?title="+encodeURIComponent("Mistake: "+name)+"&body="+encodeURIComponent("Item: "+name+"\nPage: "+location.href+"\n\nWhat is wrong, and what should it be?\n");
 const linkFor=i=>PATHMODE?location.origin+"/"+i.tab+"/"+i.slug:location.origin+location.pathname+"#"+i.tab+"/"+i.slug;
 let toastT=0;function toast(m){$("toast").textContent=m;$("toast").hidden=false;clearTimeout(toastT);toastT=setTimeout(()=>$("toast").hidden=true,1800)}
-function copyLink(i){setLoc(i.tab+"/"+i.slug,false);copyText(linkFor(i),"Link copied")}
+function copyLink(i){setMeta(i.tab,i);setLoc(i.tab+"/"+i.slug,false);copyText(linkFor(i),"Link copied")}
 function copyText(u,msg){
 const done=()=>toast(msg),fail=()=>{const a=document.createElement("textarea");a.value=u;a.style.position="fixed";a.style.opacity="0";document.body.append(a);a.select();let ok=false;try{ok=document.execCommand("copy")}catch(e){}a.remove();toast(ok?msg:"Could not copy, select it and copy by hand")};
 navigator.clipboard?.writeText(u).then(done,fail)??fail()}
 // #drinks or #drinks/white-russian: open that tab, clear anything hiding the item, then scroll to and highlight it
 function route(){const loc=curLoc(),[t,s]=loc.split("/");if(!VIEW[t])return false;if(PATHMODE&&location.hash)setLoc(loc,false);if(t=="chem")chemView=CV[s]?s:"guide";const i=s&&BYSLUG[t]?.[s];
-if(i){$("q").value="";ver++;if(t=="recipes"){meth.clear();ingSel.clear();$("d").value=$("g").value="";chips();ilist()}}syncFill=!!i;show(t,true);syncFill=false;if(t=="chem"&&!$("chem").querySelector(`[data-cv="${chemView}"][aria-pressed=true]`))chem();
+if(i){$("q").value="";ver++;if(t=="recipes"){meth.clear();ingSel.clear();$("d").value=$("g").value="";chips();ilist()}}syncFill=!!i;show(t,true);syncFill=false;setMeta(t=="chem"&&chemView!="guide"?"chem/"+chemView:t,i||null);if(t=="chem"&&!$("chem").querySelector(`[data-cv="${chemView}"][aria-pressed=true]`))chem();
 if(i){const go=()=>{const el=document.querySelector(`[data-card="${CSS.escape(i.id)}"]`);if(!el)return;el.scrollIntoView({block:"center"});return el},el=go();
 if(el){el.classList.add("hit");setTimeout(go,250);setTimeout(()=>el.classList.remove("hit"),3000)}}return true}
-addEventListener("hashchange",route);addEventListener("popstate",()=>{if(PATHMODE)route()||show("recipes",true)});
+addEventListener("hashchange",route);addEventListener("popstate",()=>{if(PATHMODE&&!route()){show("recipes",true);setMeta("recipes")}});
 $("batch").value=prefs.batch||"";$("batch").onchange=()=>{prefs.batch=+$("batch").value||0;save("prefs",prefs);RENDER[tab]();bump()};
 $("dd").textContent=new Date(DATA_DATE+"T12:00").toLocaleDateString(undefined,{year:"numeric",month:"long",day:"numeric"});
 applyTheme();chips();ilist();route()||show("recipes",true);
